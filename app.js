@@ -18,10 +18,13 @@ export default function init(express, bodyParser, fs, crypto, http) {
         res.send(NAME);
     });
 
-    app.get('/code/', function(req, res) {
-        res.setHeader('Content-Type', 'text/plain;charset=utf-8');
-        res.send(fs.readFileSync("app.js"));
-    });
+    
+app.use('/code/', (req, res, next) => {
+        res.set({'Content-Type': 'text/plain; charset=utf-8'});
+        // let url = import.meta.url;
+        let content = fs.readFileSync(import.meta.url.substring(7), 'utf8');
+        res.send(content);
+        })
 
    /* app.use('/sha1/:input/', function(req, res) {
        //let str = req.url.replace(/\/$/, "").replace(/\/sha1\/(.*)\/?$/i, "$1");
