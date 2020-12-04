@@ -24,7 +24,8 @@ export default function init(express, bodyParser, fs, crypto, http) {
     });
 
     app.get('/sha1/*', function(req, res) {
-        let str = req.url.replace(/\/sha1\/(.*)\/$/i, "$1");
+        //let str = req.url.replace(/\/sha1\/(.*)\/$/i, "$1");
+        let str = req.url;
         var shasum = crypto.createHash('sha1');
         shasum.update(str);
 
