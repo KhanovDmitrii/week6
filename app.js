@@ -23,14 +23,15 @@ export default function init(express, bodyParser, fs, crypto, http) {
         res.send(fs.readFileSync("app.js"));
     });
 
-    app.all('/sha1/*/', function(req, res) {
+    app.all('/sha1/:input/', function(req, res) {
         res.setHeader('Content-Type', 'text/plain;charset=utf-8');
         let str = req.url.replace(/\/$/, "").replace(/\/sha1\/(.*)\/?$/i, "$1");
         str = str + "/";
         //console.log(str)
         //let str = req.url;
         var shasum = crypto.createHash('sha1');
-        shasum.update(str);
+        //shasum.update(str);
+        shasum.update(req.params.input);
         //console.log(typeof shasum.digest('hex'));
         res.send(shasum.digest('hex').toString());
 
