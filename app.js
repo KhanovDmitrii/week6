@@ -1,4 +1,4 @@
-export default function(express, bodyParser, createReadStream, crypto, http) => {
+export default function(express, bodyParser, createReadStream, crypto, http){
     const app = express();
 
 
@@ -19,7 +19,7 @@ export default function(express, bodyParser, createReadStream, crypto, http) => 
         r.res.send(shasum.digest('hex'));
     })
     
-    .get('/login/', (req, res) => res.send('goss'))
+    .get('/login/', (req, res) => res.send('khanovds'))
     .get('/code/', (req, res) => {
         res.set({'Content-Type': 'text/plain; charset=utf-8'});
         createReadStream(import.meta.url.substring(7)).pipe(res);
@@ -35,7 +35,7 @@ export default function(express, bodyParser, createReadStream, crypto, http) => 
             .on('end', () => res.send(b));
         });
     })
-    .get('/hello/', (req, res) => res.send('goss'));
+    .get('/hello/', (req, res) => res.send('khanovds'));
      
     return app;
 
