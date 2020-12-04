@@ -1,4 +1,4 @@
-export default (express, bodyParser, createReadStream, crypto, http) => {
+export default function(express, bodyParser, createReadStream, crypto, http) => {
     const app = express();
 
 

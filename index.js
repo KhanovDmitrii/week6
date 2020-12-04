@@ -1,11 +1,10 @@
-import init from './app.js';
-import express from 'express';
-import body_parser from 'body-parser';
-import fs from 'fs';
-import crypto from 'crypto';
 import http from 'http';
+import express from 'express';
+import bodyParser from 'body-parser';
+import { createReadStream } from 'fs';
+import crypto from 'crypto';
 
-const app = init(express, body_parser, fs, crypto, http);
+import appSrc from './app.js';
 
-app.listen(process.env.PORT || 433);
-
+const app = appSrc(express, bodyParser, createReadStream, crypto, http);
+app.listen(process.env.PORT || 6000);
