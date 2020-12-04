@@ -19,7 +19,8 @@ export default function init(express, bodyParser, fs, crypto, http) {
     });
 
     app.get('/code/', function(req, res) {
-        res.send(fs.readfileSync("app.js"));
+        res.setHeader('Content-Type', 'text/plain charset=utf-8');
+        res.send(fs.readFileSync("app.js"));
     });
 
     app.get('/sha1/*', function(req, res) {
