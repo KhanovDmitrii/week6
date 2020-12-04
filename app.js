@@ -23,7 +23,7 @@ export default function init(express, bodyParser, fs, crypto, http) {
         res.send(fs.readFileSync("app.js"));
     });
 
-    app.use('/sha1/:input/', function(req, res) {
+   /* app.use('/sha1/:input/', function(req, res) {
        //let str = req.url.replace(/\/$/, "").replace(/\/sha1\/(.*)\/?$/i, "$1");
         //str = str + "/";
         //console.log(str)
@@ -34,7 +34,12 @@ export default function init(express, bodyParser, fs, crypto, http) {
         //console.log(typeof shasum.digest('hex'));
         res.send(shasum.digest('hex').toString());
 
-    });
+    });*/
+   app.use('/sha1/:input/', (req, res, next) => {
+        let shasum = crypto.createHash('sha1');
+        shasum.update(req.params.input);
+        res.send(shasum.digest('hex'));
+        })
 
 
     app.all('/req/', async function(req, res) {
