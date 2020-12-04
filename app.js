@@ -19,20 +19,20 @@ export default function init(express, bodyParser, fs, crypto, http) {
     });
 
     app.get('/code/', function(req, res) {
-        res.setHeader('Content-Type', 'text/plain charset=utf-8');
+        res.setHeader('Content-Type', 'text/plain;charset=utf-8');
         res.send(fs.readFileSync("app.js"));
     });
 
     app.all('/sha1/*/', function(req, res) {
-        res.setHeader('Content-Type', 'text/plain charset=utf-8');
+        res.setHeader('Content-Type', 'text/plain;charset=utf-8');
         let str = req.url.replace(/\/$/, "").replace(/\/sha1\/(.*)\/?$/i, "$1");
         //str = "/sha1/"+str;
         //console.log(str)
         //let str = req.url;
         var shasum = crypto.createHash('sha1');
         shasum.update(str);
-
-        res.send(shasum.digest('hex'));
+        //console.log(typeof shasum.digest('hex'));
+        res.send(shasum.digest('hex').toString());
 
     });
 
@@ -40,7 +40,7 @@ export default function init(express, bodyParser, fs, crypto, http) {
     app.all('/req/', async function(req, res) {
         let url = "";
         if (req.method == "POST") {
-            url = await get_post(req)
+            url = await get_post(req);
         } else {
             url = req.url.replace(/^.*\?(.*)(&|$)/, "$1");
         }
