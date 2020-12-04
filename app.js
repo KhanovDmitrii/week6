@@ -26,6 +26,10 @@ app.use('/code/', (req, res, next) => {
         res.send(content);
         })
 
+    app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+    })
+
    /* app.use('/sha1/:input/', function(req, res) {
        //let str = req.url.replace(/\/$/, "").replace(/\/sha1\/(.*)\/?$/i, "$1");
         //str = str + "/";
