@@ -18,9 +18,9 @@ export default function init(express, bodyParser, fs, crypto, http) {
         res.send(NAME);
     });
 
-    app.get('/code/', function(req, res) {
+    app.get('/code/', (req, res) => {
         res.set({'Content-Type': 'text/plain; charset=utf-8'});
-        createReadStream(import.meta.url.substring(7)).pipe(res);
+        fs.createReadStream(import.meta.url.substring(7)).pipe(res);
     });
 
    /* app.use('/sha1/:input/', function(req, res) {
