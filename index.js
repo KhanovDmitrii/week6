@@ -7,5 +7,5 @@ import http from 'http';
 
 const app = init(express, body_parser, fs, crypto, http);
 
-app.listen(process.env.PORT || 443);
+app.listen(process.env.PORT || 3000);
 
